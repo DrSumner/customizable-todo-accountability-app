@@ -1,0 +1,43 @@
+:root {
+  --main-color: #435CDB;
+}
+.App {
+  text-align: center;
+ background-color: #131313; 
+ color: white;
+}
+
+.App-header {
+  
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  
+}
+
+.goals-container{
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  margin-left: 100px;
+  font-size: calc(5px + 2vmin);
+}
+.goal-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+  Button{
+    margin-right: 20px;
+    background-color: var(--main-color);
+    border-radius: 20px;
+    border:#131313;
+    width: 134px;
+    height: 41px;
+  }
+}

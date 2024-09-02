@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './style/App.css';
+import Header from './components/Header';
+import Goals from './components/Goals';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      <h1>Todo Accountabilty App</h1>
-      </header>
+      <Header/>
+      <Goals/>  
     </div>
   );
 }
