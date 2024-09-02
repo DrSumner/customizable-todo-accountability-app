@@ -82,6 +82,7 @@ h3{
   height: 30px;
   border-radius: 20px;
   background-color: rgb(75, 75, 75);
+  margin-bottom: 20px;
 
 }
 
@@ -98,6 +99,7 @@ border-radius: 10px;
 min-height: 243px;
 min-width: 406px;
 margin-top: 30px;
+margin-bottom: 40px;
 }
 
 .tasks-header{
@@ -140,4 +142,19 @@ margin-top: 30px;
 
 .task{
   margin-bottom: 10px ;
+}
+
+.edit-button{
+  margin-right: 20px;
+    background-color: var(--main-color);
+    border-radius: 20px;
+    border:#131313;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-width: 134px;
+    height: 41px;
+    color: white; 
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
