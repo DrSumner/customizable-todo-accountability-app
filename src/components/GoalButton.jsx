@@ -3,11 +3,14 @@ import { Button } from "react-bootstrap";
 
 const GoalButton = (props) => {
 
-    const {name} = props
+    const {name, handleClick} = props
 
     return (
 <div>
-<Button>
+<Button
+onClick={handleClick}
+name={name}
+>
     {name}
 </Button>
 </div>
