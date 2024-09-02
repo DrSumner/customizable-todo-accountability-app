@@ -21,12 +21,11 @@ return(
             </div>
             <div className="tasks-list">
             {tasks.map((task, idx) => (
-                <div key={idx}>
+                <div key={idx} className="task">
                  <label >
-                    <input className="checkbox"
+                    <input className={`${idx===0 || idx===1 ? 'completed' : null} checkbox`}
                     type='checkbox'
                     name={task}
-                    checked={false}
                     />
                     </label>{task}
                 </div>
