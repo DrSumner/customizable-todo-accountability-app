@@ -1,0 +1,1 @@
+This app is designed for you to create your own goals, and assign tasks to them. you can checkmark them off manually and track your progress towards you goals. for now it will only hold up to 5 goals, and up to 20 tasks per goal. you can create an account to save your progress.
