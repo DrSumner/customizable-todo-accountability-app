@@ -3,8 +3,8 @@ import { useState } from "react";
 
 const ProgressBar = (props) => {
 
-    const {currentGoal} = props
-    const [progress, setProgress] = useState([2,5])
+    const {currentGoal, progress} = props
+   
     const tasksToGo = progress[1] - [progress[0]]
     const width = (progress[0] / progress[1]) * 100
     return (

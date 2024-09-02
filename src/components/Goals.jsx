@@ -48,7 +48,7 @@ const Goals = () => {
                     : null
                 }
                 </div>
-                <div className="tasks-container">
+                <div >
                 <Tasks currentGoal={currentGoal} />
                 </div>
                 </div>

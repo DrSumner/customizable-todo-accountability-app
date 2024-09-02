@@ -47,6 +47,7 @@
 border-radius: 40px;
 min-height: 243px;
 min-width: 406px;
+margin-bottom: 30px;
 #progress{
   display: flex;
   margin-left: 40px;
@@ -88,4 +89,48 @@ h3{
   border-radius: 20px;
   background-color: var(--main-color);
   transition: width 0.5 ease-out;
+}
+
+.tasks-container{
+  background-color: #303030;
+border-radius: 10px;
+min-height: 243px;
+min-width: 406px;
+margin-top: 30px;
+}
+
+.tasks-header{
+  
+  background-color: var(--main-color);
+  display: flex;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  
+  h1{
+   margin-left: 20px; 
+   font-size: 20px;
+  }
+}
+
+.tasks-list{
+  display: flex;
+  margin-left: 20px;
+  flex-direction: column;
+  align-items: start;
+}
+.checkbox{
+  width: 1.3em;
+    height: 1.3em;
+    background-color:transparent;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.completed{
+  background-color:var(--main-color);
 }
