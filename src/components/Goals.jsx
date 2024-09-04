@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from "react";
-import ProgressBar from "./ProgressBar";
 import GoalButton from "./GoalButton";
 import Tasks from "./Tasks";
+import { useDispatch, useSelector } from "react-redux";
+import { Form } from "./Form";
 const Goals = () => {
 
-    const [goals, setGoals] = useState(
-        [
-            "Apply for Jobs", 'Outreach', "code problems",
-        ])
+    const goals = useSelector(state => state.goals)
+    const goalsArray = Object.values(goals)
+    const dispatch = useDispatch()
 
-    const [currentGoal, setCurrentGoal] = useState(goals[0])
+    //console.log(goalsArray)
+    const [currentGoal, setCurrentGoal] = useState(goalsArray[0]?.name || '');
+    const [form, setForm] = useState(false)
         useEffect(() => {
 
-        }, [goals, currentGoal])
+        }, [currentGoal])
         
         const handleClick = (event) => {
             event.preventDefault()
             const {name} = event.target
-            console.log(name)
+            //console.log(name)
             setCurrentGoal(name)
         }
 
-        const createNewGoal = (event) => {
+        const showForm = (event) => {
             event.preventDefault()
             const {name} = event.target
-            console.log(name)
+            if(name === '+'){
+                setForm(!form)
+            }
         }
 
 
@@ -35,22 +39,27 @@ const Goals = () => {
                 <h1> Goals:</h1>
                 <div className="goal-buttons">
                 {
-                    goals.map((goal, idx) => (
+                    goalsArray?.map((goal, idx) => (
                         <h2 key={idx} >
-                        <GoalButton handleClick={handleClick} name={goal} />
+                        <GoalButton handleClick={handleClick} name={goal.name} />
                     </h2>
                 ))
             }
-                {goals.length < 5 ?
+                {!form && goalsArray?.length < 5 ?
                     <h2>
-                    <GoalButton handleClick={createNewGoal} name='+'/>
+                    <GoalButton handleClick={showForm} name='+'/>
                     </h2>
                     : null
                 }
                 </div>
-                <div >
-                <Tasks currentGoal={currentGoal} />
+                {form 
+                ? <div>
+                    <Form/>
                 </div>
+                
+                : <div >
+                <Tasks currentGoal={currentGoal} />
+                </div>}
                 </div>
             </div>
         )

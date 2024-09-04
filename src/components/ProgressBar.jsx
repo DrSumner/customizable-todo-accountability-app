@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 const ProgressBar = (props) => {
 
-    const {currentGoal, progress, edit} = props
+    const {currentGoal, progress, edit, daysLeft} = props
    
     const tasksToGo = progress[1] - [progress[0]]
     const width = (progress[0] / progress[1]) * 100
@@ -14,7 +14,7 @@ const ProgressBar = (props) => {
             {currentGoal}
             </h3>
             <h3>
-                6 days left!
+                {daysLeft} days left!
             </h3>
         </div>
         <h2 id="progress"> Progress:</h2>

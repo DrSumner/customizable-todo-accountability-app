@@ -1,18 +1,23 @@
 import React from "react";
-import { useState } from "react";
 import ProgressBar from "./ProgressBar";
+import { useSelector } from "react-redux";
 
 const Tasks = (props) => {
 
 const {currentGoal} = props
-const [progress, setProgress] = useState([2,5])
-const [tasks, setTasks] = useState([
-    'Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5'
-])
+const tasks = useSelector(state => state.goals[currentGoal].tasks)
+const progress = [
+    useSelector(state => state.goals[currentGoal].completedTasksCount),
+    useSelector(state => state.goals[currentGoal].tasks.length)
+]
+const completetionDate = new Date(useSelector(state => state.goals[currentGoal].completetionDate))
+const today = new Date()
+const timeDiff = completetionDate.getTime() - today.getTime()
+const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24))
 
 return(
     <div className="bottom-half">
-          <ProgressBar progress={progress} currentGoal={currentGoal} />  
+          <ProgressBar daysLeft={daysLeft} progress={progress} currentGoal={currentGoal} />  
          <div className="tasks-container">
             <div className="tasks-header">
             <h1>
@@ -21,13 +26,13 @@ return(
             </div>
             <div className="tasks-list">
             {tasks.map((task, idx) => (
-                <div key={idx} className="task">
+                <div key={task.id} className="task">
                  <label >
-                    <input className={`${idx===0 || idx===1 ? 'completed' : null} checkbox`}
+                    <input className={`${task.completed ? 'completed' : null} checkbox`}
                     type='checkbox'
-                    name={task}
+                    name={task.description}
                     />
-                    </label>{task}
+                    </label>{task.description}
                 </div>
             ))}
             </div>
