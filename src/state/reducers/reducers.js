@@ -43,8 +43,10 @@ export const reducer = (state= initialState, action) => {
                 ...state, 
                 goals: {...state.goals, 
                     [action.payload.name]: {
+                        id: action.payload.id,
                         name: action.payload.name,
                         tasks: action.payload.tasks,
+                        completetionDate: action.payload.completetionDate,
                         completedTasksCount: 0
                     }
                 

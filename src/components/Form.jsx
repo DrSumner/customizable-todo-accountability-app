@@ -34,7 +34,12 @@ export const Form = (props) => {
         ...values,
         tasks: updatedTasks,
       }); 
-    } else
+    } else if( name === 'date'){
+        setValues({
+          ...values,
+          completetionDate: value
+        })
+    }
     setValues({
       ...values, [name]: value
     })
@@ -45,7 +50,8 @@ export const Form = (props) => {
     const goalId = idMaker()
     const name = values.goal
     const tasks = values.tasks
-    dispatch({type:SET_GOALS, payload: {id: goalId ,name, tasks}})
+    const completetionDate = values.completetionDate
+    dispatch({type:SET_GOALS, payload: {id: goalId ,name, tasks, completetionDate}})
 
   }
 
@@ -111,6 +117,16 @@ export const Form = (props) => {
         onClick={increaseTasksNumber}>
           Add a Task
         </Button>
+      </label>
+      <label>
+        <span>Due Date</span>
+        <input
+        type='date'
+        name="date"
+        onChange={onChange}
+        value={values.completetionDate}
+        >
+        </input>
       </label>
       <label><span>Create Goal:</span>
         <button
