@@ -18,9 +18,7 @@ export const Form = (props) => {
     const [errors, setErrors] = useState({
       goal: '',
       completionDate: '',
-      tasks: [
-        {  description: '',}
-      ]
+      tasks: ''
     })
     const [taskNumber, setTaskNumber] = useState(1)
     const [values, setValues] = useState({
@@ -109,7 +107,10 @@ export const Form = (props) => {
       onSubmit={onSubmit}
         >
       <h3>New Goal Form</h3>
-      
+      {errors.goal && <h4 className="errors">{errors.goal}</h4>}
+      {/* {errors.tasks && <h4 className="errors">{errors.tasks}</h4>} */}
+      {errors.completionDate && <h4 className="errors">{errors.completionDate}</h4>}
+
       <label>
         <input
           type='text'

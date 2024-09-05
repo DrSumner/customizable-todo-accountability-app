@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 export const goalSchema = Yup.object().shape({
     goal: Yup.string()
-    .required('Goal NAme is required')
+    .required('Goal Name is required')
     .max(15, 'Goal name must be 15 char or less'),
 
     completionDate: Yup.date()
