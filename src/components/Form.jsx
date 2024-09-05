@@ -39,7 +39,7 @@ export const Form = (props) => {
           ...values,
           completetionDate: value
         })
-    }
+    } else
     setValues({
       ...values, [name]: value
     })
