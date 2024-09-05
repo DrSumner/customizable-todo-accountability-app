@@ -21,6 +21,7 @@ const Goals = () => {
             const {name} = event.target
             //console.log(name)
             setCurrentGoal(name)
+            setForm(false)
         }
 
         const showForm = (event) => {

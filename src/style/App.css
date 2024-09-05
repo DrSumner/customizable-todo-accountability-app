@@ -160,4 +160,36 @@ margin-bottom: 40px;
     margin-bottom: 20px;
 }
 
-#goalForm{}
+#goalForm{
+  background-color: #303030;
+border-radius: 10px;
+min-height: 243px;
+min-width: 406px;
+margin-top: 30px;
+margin-bottom: 40px;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  input{
+    margin-bottom: 20px;
+    width: 230px;
+    height: 30px;
+    font-size: 24px;
+  }
+}
+
+.task-input{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.remove-button{
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+  align-self: start;
+}
