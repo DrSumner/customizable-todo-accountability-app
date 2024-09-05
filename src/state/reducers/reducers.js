@@ -9,7 +9,7 @@ export const initialState = {
         'Apply for Jobs': {
             id: 'goal1',
             name: 'Apply for Jobs',
-            completetionDate: '2024-09-10',
+            completionDate: '2024-09-10',
             completedTasksCount: 2,
             tasks: [
                 {id: 'task1', description: 'apply for a job', completed: true},
@@ -22,7 +22,7 @@ export const initialState = {
         'Outreach': {
             id: 'goal2',
             name: 'Outreach',
-            completetionDate: '2024-09-05',
+            completionDate: '2024-09-05',
             completedTasksCount: 3,
             tasks: [
                 {id: 'task1', description: 'Outreach to someone', completed: true},
@@ -46,7 +46,7 @@ export const reducer = (state= initialState, action) => {
                         id: action.payload.id,
                         name: action.payload.name,
                         tasks: action.payload.tasks,
-                        completetionDate: action.payload.completetionDate,
+                        completionDate: action.payload.completionDate,
                         completedTasksCount: 0
                     }
                 

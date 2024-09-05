@@ -15,9 +15,9 @@ const progress = [
     useSelector(state => state.goals[currentGoal].completedTasksCount),
     useSelector(state => state.goals[currentGoal].tasks.length)
 ]
-const completetionDate = new Date(useSelector(state => state.goals[currentGoal].completetionDate))
+const completionDate = new Date(useSelector(state => state.goals[currentGoal].completionDate))
 const today = new Date()
-const timeDiff = completetionDate.getTime() - today.getTime()
+const timeDiff = completionDate.getTime() - today.getTime()
 const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24))
 
 const completeTask= (taskId) =>{

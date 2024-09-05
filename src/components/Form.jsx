@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_GOALS } from "../state/actionTypes";
+import { goalSchema } from "../Schema/validationSchema";
+import * as Yup from 'yup'
 
 const idMaker = () => {
   return Math.random().toString(36).substring(2, 7)
@@ -9,25 +11,37 @@ const idMaker = () => {
 
 export const Form = (props) => {
 
+  const [enabled, setEnabled] = useState(false)
   const {setForm, setCurrentGoal} = props
-  const goals = useSelector(state => state.goals)
   const dispatch = useDispatch()
 
-
+    const [errors, setErrors] = useState({
+      goal: '',
+      completionDate: '',
+      tasks: [
+        {  description: '',}
+      ]
+    })
     const [taskNumber, setTaskNumber] = useState(1)
     const [values, setValues] = useState({
       goal: '',
-      completetionDate: '',
+      completionDate: '',
       tasks: [
         { id: idMaker(), description: '', completed: false }
       ]
     })
 
+    useEffect(() => {
+      goalSchema.isValid(values).then(isValid => {
+        setEnabled(isValid)
+      })
+    }, [values])
+
   const onChange = (e, index) => {
     e.preventDefault()
     const {name, value} = e.target
 
-    if (name === 'task') {
+    if (name === 'tasks') {
       
       const updatedTasks = [...values.tasks];
       updatedTasks[index] = { ...updatedTasks[index], description: value };
@@ -35,15 +49,23 @@ export const Form = (props) => {
         ...values,
         tasks: updatedTasks,
       }); 
-    } else if( name === 'date'){
+    } else if( name === 'completionDate'){
         setValues({
           ...values,
-          completetionDate: value
+          completionDate: value
         })
-    } else
+    } else{
     setValues({
       ...values, [name]: value
     })
+  }
+
+  Yup
+  .reach(goalSchema, name)
+  .validate(value)
+  .then(() => { setErrors({...errors, [name]: ''}) })
+  .catch((error) => {setErrors({...errors, [name]:error.errors[0]})})
+
   }
 
   const onSubmit = (e) => {
@@ -51,8 +73,8 @@ export const Form = (props) => {
     const goalId = idMaker()
     const name = values.goal
     const tasks = values.tasks
-    const completetionDate = values.completetionDate
-    dispatch({type:SET_GOALS, payload: {id: goalId ,name, tasks, completetionDate}})
+    const completionDate = values.completionDate
+    dispatch({type:SET_GOALS, payload: {id: goalId ,name, tasks, completionDate}})
     setCurrentGoal(name)
     setForm(false)
   }
@@ -107,7 +129,7 @@ export const Form = (props) => {
             key={index}
             className="task-input"
             type="text"
-            name='task'
+            name='tasks'
             onChange={(e) => onChange(e, index)}
             value={values.tasks[index].description || ''}
             placeholder={`type task ${index + 1}`}
@@ -120,21 +142,22 @@ export const Form = (props) => {
           Add a Task
         </Button>
       </label>
+      <span>Due Date</span>
       <label>
-        <span>Due Date</span>
         <input
         type='date'
-        name="date"
+        name="completionDate"
         onChange={onChange}
-        value={values.completetionDate}
+        value={values.completionDate}
         >
         </input>
       </label>
       <label><span>Create Goal:</span>
-        <button
+        <input
           // eslint-disable-next-line jsx-a11y/aria-role
-          role='submit'
-        >Create Goal</button>
+          type='submit'
+          disabled={!enabled}
+        ></input>
       </label>
     </form>
     )
