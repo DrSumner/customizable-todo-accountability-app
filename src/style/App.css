@@ -164,7 +164,7 @@ margin-bottom: 40px;
   background-color: #303030;
 border-radius: 10px;
 min-height: 243px;
-min-width: 406px;
+width: 406px;
 margin-top: 30px;
 margin-bottom: 40px;
   display: flex;
@@ -192,4 +192,37 @@ margin-bottom: 40px;
   justify-content: end;
   flex-direction: row;
   align-self: start;
+}
+
+.completed-goals{
+  background-color: #303030;
+border-radius: 40px;
+height: 243px;
+width: 406px;
+margin-bottom: 30px;
+display: flex;
+justify-content: center;
+flex-direction: row;
+
+
+}
+
+.completed-goals-list{
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items:start;
+  border: var(--main-color);
+  border-width: 4px;
+  border-style: solid;
+  padding: 4%;
+}
+
+.parent-container{
+  display: flex;
+  justify-content: center; /* Horizontally centers the container */
+  align-items: center; /* Vertically centers the container (optional) */
+  flex-direction: column;
 }

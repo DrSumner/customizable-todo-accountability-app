@@ -9,7 +9,7 @@ const Tasks = (props) => {
     const dispatch = useDispatch()
 
 
-const {currentGoal} = props
+const {currentGoal, setCurrentGoal, goalsArray} = props
 const tasks = useSelector(state => state.goals[currentGoal].tasks)
 const progress = [
     useSelector(state => state.goals[currentGoal].completedTasksCount),
@@ -29,7 +29,9 @@ const completeTask= (taskId) =>{
 
 return(
     <div className="bottom-half">
-          <ProgressBar daysLeft={daysLeft} progress={progress} currentGoal={currentGoal} />  
+          <ProgressBar daysLeft={daysLeft} progress={progress} 
+          currentGoal={currentGoal} setCurrentGoal={setCurrentGoal}
+          goalsArray={goalsArray} />  
          <div className="tasks-container">
             <div className="tasks-header">
             <h1>

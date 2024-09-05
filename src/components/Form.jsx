@@ -11,6 +11,13 @@ const idMaker = () => {
 
 export const Form = (props) => {
 
+  const {goalsArray} = props
+
+  let existingGoalNames = []
+  if(goalsArray) {
+    existingGoalNames = goalsArray.map(goal => goal.name) 
+  }
+
   const [enabled, setEnabled] = useState(false)
   const {setForm, setCurrentGoal} = props
   const dispatch = useDispatch()
@@ -28,11 +35,28 @@ export const Form = (props) => {
         { id: idMaker(), description: '', completed: false }
       ]
     })
+    const goalNameSchema = Yup.object().shape({
+      goal: Yup.string()
+      .required()
+      .test(
+        'unique',
+        'goal name must be unique',
+        (value) => !existingGoalNames.includes(value)
+      )
+    })
 
     useEffect(() => {
-      goalSchema.isValid(values).then(isValid => {
-        setEnabled(isValid)
-      })
+      const validateForm = async () => {
+        const [isGoalValid, isGoalNameValid] = await Promise.all([
+          goalSchema.isValid(values),  
+          goalNameSchema.isValid(values)
+        ]);
+    
+        setEnabled(isGoalValid && isGoalNameValid);
+      };
+    
+      validateForm(); 
+    
     }, [values])
 
   const onChange = (e, index) => {

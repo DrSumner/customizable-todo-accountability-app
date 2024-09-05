@@ -1,39 +1,12 @@
 import {
-SET_GOALS, SET_TASKS, COMPLETE_TASK, EDIT_GOALS
+SET_GOALS, COMPLETE_TASK, EDIT_GOALS, COMPLETE_GOAL
 } from '../actionTypes'
 
 
 
 export const initialState = {
-    goals: {
-        'Apply for Jobs': {
-            id: 'goal1',
-            name: 'Apply for Jobs',
-            completionDate: '2024-09-10',
-            completedTasksCount: 2,
-            tasks: [
-                {id: 'task1', description: 'apply for a job', completed: true},
-                {id: 'task2', description: 'apply for a job', completed: true},
-                {id: 'task3', description: 'apply for a job', completed: false},
-                {id: 'task4', description: 'apply for a job', completed: false},
-                {id: 'task5', description: 'apply for a job', completed: false},
-            ]
-        },
-        'Outreach': {
-            id: 'goal2',
-            name: 'Outreach',
-            completionDate: '2024-09-05',
-            completedTasksCount: 3,
-            tasks: [
-                {id: 'task1', description: 'Outreach to someone', completed: true},
-                {id: 'task2', description: 'Outreach to someone', completed: true},
-                {id: 'task3', description: 'Outreach to someone', completed: true},
-                {id: 'task4', description: 'Outreach to someone', completed: false},
-                {id: 'task5', description: 'Outreach to someone', completed: false},
-            ]
-        },
-    },
-    
+    goals: {},
+    completedGoals: []
 }
 
 export const reducer = (state= initialState, action) => {
@@ -73,6 +46,20 @@ export const reducer = (state= initialState, action) => {
                      }
                 }
             };
+        case COMPLETE_GOAL:{
+            const { goal } = action.payload; 
+            const completedGoal = state.goals[goal];
+      
+            if (!completedGoal) return state;
+      
+            const { [goal]: removedGoal, ...remainingGoals } = state.goals;
+      
+            return {
+              ...state,
+              goals: remainingGoals, 
+              completedGoals: [...state.completedGoals, completedGoal], 
+            };
+          }
         default:
             return state;
     }

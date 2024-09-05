@@ -1,12 +1,22 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { COMPLETE_GOAL } from "../state/actionTypes";
 
 const ProgressBar = (props) => {
 
-    const {currentGoal, progress, edit, daysLeft} = props
+    const {currentGoal, progress, daysLeft, setCurrentGoal, goalsArray} = props
    
     const tasksToGo = progress[1] - [progress[0]]
     const width = (progress[0] / progress[1]) * 100
+
+    const dispatch = useDispatch()
+
+    const complete = (goal) => {
+        dispatch({type:COMPLETE_GOAL, payload:{goal}})
+        setCurrentGoal(goalsArray[0].name)
+    }
+
     return (
         <div className="progress-container">
         <div className="progress-header">
@@ -26,13 +36,13 @@ const ProgressBar = (props) => {
 
                 </div>
              </div>
-             <div>
+            {width === 100 && <div>
                 <Button className="edit-button"
-                onClick={edit}
+                onClick={() => complete(currentGoal)}
                 >
-                    Edit Goal
+                    Finito!
                 </Button>
-             </div>
+             </div>}
         </div>
     )
 
