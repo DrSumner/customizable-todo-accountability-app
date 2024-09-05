@@ -55,7 +55,7 @@ const Goals = () => {
                 </div>
                 {form 
                 ? <div>
-                    <Form/>
+                    <Form setForm={setForm} setCurrentGoal={setCurrentGoal} />
                 </div>
                 
                 : <div >

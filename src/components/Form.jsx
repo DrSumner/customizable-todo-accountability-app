@@ -9,6 +9,7 @@ const idMaker = () => {
 
 export const Form = (props) => {
 
+  const {setForm, setCurrentGoal} = props
   const goals = useSelector(state => state.goals)
   const dispatch = useDispatch()
 
@@ -52,7 +53,8 @@ export const Form = (props) => {
     const tasks = values.tasks
     const completetionDate = values.completetionDate
     dispatch({type:SET_GOALS, payload: {id: goalId ,name, tasks, completetionDate}})
-
+    setCurrentGoal(name)
+    setForm(false)
   }
 
   const increaseTasksNumber = () =>{
