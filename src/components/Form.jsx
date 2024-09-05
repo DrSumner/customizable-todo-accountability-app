@@ -1,15 +1,65 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_GOALS } from "../state/actionTypes";
+
+const idMaker = () => {
+  return Math.random().toString(36).substring(2, 7)
+}
 
 export const Form = (props) => {
 
+  const goals = useSelector(state => state.goals)
+  const dispatch = useDispatch()
+
+
     const [taskNumber, setTaskNumber] = useState(1)
+    const [values, setValues] = useState({
+      goal: '',
+      completetionDate: '',
+      tasks: [
+        { id: idMaker(), description: '', completed: false }
+      ]
+    })
+
+  const onChange = (e, index) => {
+    e.preventDefault()
+    const {name, value} = e.target
+
+    if (name === 'task') {
+      
+      const updatedTasks = [...values.tasks];
+      updatedTasks[index] = { ...updatedTasks[index], description: value };
+      setValues({
+        ...values,
+        tasks: updatedTasks,
+      }); 
+    } else
+    setValues({
+      ...values, [name]: value
+    })
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const goalId = idMaker()
+    const name = values.goal
+    const tasks = values.tasks
+    dispatch({type:SET_GOALS, payload: {id: goalId ,name, tasks}})
+
+  }
 
   const increaseTasksNumber = () =>{
     if(taskNumber >= 10){
       setTaskNumber(10)
     } else
     setTaskNumber(taskNumber + 1)
+    setValues({
+      ...values,
+      tasks: [...values.tasks, 
+        { id: idMaker(), description: '', completed: false }
+      ] 
+    });
   }
 
   const decreaseTasksNumber = () =>{
@@ -17,22 +67,26 @@ export const Form = (props) => {
       setTaskNumber(1)
     } else
     setTaskNumber(taskNumber - 1)
+    setValues({
+      ...values,
+      tasks: values.tasks.slice(0, -1) 
+    });
   }
 
 
     return (
         <form id="goalForm" 
-        //onSubmit={onNewQuote}
+      onSubmit={onSubmit}
         >
       <h3>New Goal Form</h3>
       
       <label>
         <input
           type='text'
-          name='goalName'
+          name='goal'
           placeholder='Goal'
-          //onChange={onChange}
-          //value={state.values.authorName}
+          onChange={onChange}
+          value={values.goal}
         />
       </label>
       <label>
@@ -45,7 +99,9 @@ export const Form = (props) => {
             key={index}
             className="task-input"
             type="text"
-            name={`task-${index}`}
+            name='task'
+            onChange={(e) => onChange(e, index)}
+            value={values.tasks[index].description || ''}
             placeholder={`type task ${index + 1}`}
             /> 
             

@@ -42,7 +42,13 @@ export const reducer = (state= initialState, action) => {
             return {
                 ...state, 
                 goals: {...state.goals, 
-                    [action.payload.name]:action.payload}};
+                    [action.payload.name]: {
+                        name: action.payload.name,
+                        tasks: action.payload.tasks,
+                        completedTasksCount: 0
+                    }
+                
+                }};
         case COMPLETE_TASK:
             const goal = state.goals[action.payload.goal];
 
