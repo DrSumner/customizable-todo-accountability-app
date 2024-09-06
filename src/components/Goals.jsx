@@ -14,8 +14,10 @@ const Goals = () => {
     const [form, setForm] = useState(false)
     const [list, setList] = useState(false)
         useEffect(() => {
-            
+
         }, [currentGoal, goals])
+
+        
         
         const handleClick = (event) => {
             event.preventDefault()
@@ -88,22 +90,27 @@ const Goals = () => {
                 </button>
                 {list && <div className="footer">
 
-                <h4>
-                Here are your completed goals so far! keep it up!
-                </h4> 
+                
 
                     {
                         <div className="completed-goals">
+                            <div className="bar">
+                             <h4>
+                            Here are your completed goals so far! keep it up!
+                            </h4>    
+                            </div>
+                            <ol>
 
                         {completedGoals.map((goal, index) => (
                             <div >
                                 
-                                <h4 className="completed-goals-list">
+                                <li className="completed-goals-list">
                                  {`${index +1}. ${goal.name}`}
-                                </h4>
+                                </li>
                                  
                             </div>
                         ))}
+                        </ol>
                         </div>
                     }
 

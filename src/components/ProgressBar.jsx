@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { COMPLETE_GOAL } from "../state/actionTypes";
+import confetti from "canvas-confetti";
 
 const ProgressBar = (props) => {
 
@@ -12,9 +13,26 @@ const ProgressBar = (props) => {
 
     const dispatch = useDispatch()
 
+    const triggerConfetti = () => {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      };
+
     const complete = (goal) => {
+        if(goal === goalsArray[0].name){
+            setCurrentGoal(goalsArray[1]?.name || '')
+
+        } else{
+        setCurrentGoal(goalsArray[0]?.name || '')
+    }
         dispatch({type:COMPLETE_GOAL, payload:{goal}})
-        setCurrentGoal(goalsArray[0].name)
+
+        triggerConfetti();
+    setTimeout(() => {
+    }, 3000);
     }
 
     return (

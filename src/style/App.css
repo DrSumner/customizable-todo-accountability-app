@@ -84,6 +84,7 @@ h3{
   border-radius: 20px;
   background-color: rgb(75, 75, 75);
   margin-bottom: 20px;
+  overflow: hidden;
 
 }
 
@@ -91,7 +92,7 @@ h3{
   height: 100%;
   border-radius: 20px;
   background-color: var(--main-color);
-  transition: width 0.5 ease-out;
+  transition: width 0.5s ease-out;
 }
 
 .tasks-container{
@@ -197,32 +198,40 @@ margin-bottom: 40px;
 .completed-goals{
   background-color: #303030;
 border-radius: 40px;
-height: 243px;
+min-height: 243px;
 width: 406px;
 margin-bottom: 30px;
 display: flex;
-justify-content: center;
-flex-direction: row;
+justify-content: start;
+flex-direction: column;
 
 
 }
 
 .completed-goals-list{
   display: flex;
-  margin-left: 20px;
-  margin-top: 10px;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-items:start;
-  border: var(--main-color);
-  border-width: 4px;
-  border-style: solid;
-  padding: 4%;
+  align-items: flex-start;
+  margin-left: 1px;
+  margin-top: 10px;
 }
 
 .parent-container{
   display: flex;
-  justify-content: center; /* Horizontally centers the container */
-  align-items: center; /* Vertically centers the container (optional) */
+  justify-content: center;
+  align-items: center; 
   flex-direction: column;
+}
+
+.bar{
+  background-color: var(--main-color);
+  display: flex;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 10px;
+   
+   height: 50px;
+  h4{
+    margin-left: 20px;
+  }
+
 }
