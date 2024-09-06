@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: #84ec2271;
   
 }
 
@@ -234,4 +235,8 @@ flex-direction: column;
     margin-left: 20px;
   }
 
+}
+
+.create-goal{
+  color: #fdf6d3d2;
 }

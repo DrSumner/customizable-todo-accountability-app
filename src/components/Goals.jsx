@@ -70,7 +70,7 @@ const Goals = () => {
                 </div>}
                 </div>
                 : !form ? <div> 
-                    <h1> Create a Goal !</h1> 
+                    <h1 className="create-goal"> Create a Goal !</h1> 
                     <h2 className="goal-buttons">
                     <GoalButton handleClick={showForm} name='+'/>
                     </h2>
