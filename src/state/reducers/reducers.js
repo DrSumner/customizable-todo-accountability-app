@@ -6,11 +6,7 @@ SET_GOALS, COMPLETE_TASK, EDIT_GOALS, COMPLETE_GOAL
 
 export const initialState = {
     goals: {},
-    completedGoals: [
-        {name: 'goal 1'},
-        {name: 'goal 2'},
-        {name: 'goal 3'}
-    ]
+    completedGoals: []
 }
 
 export const reducer = (state= initialState, action) => {
