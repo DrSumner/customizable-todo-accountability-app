@@ -1,31 +1,18 @@
-# Create React App
+# Accountability Todo app
 
-This directory is a brief example of a [Create React App](https://github.com/facebook/create-react-app) site that can be deployed to Vercel with zero configuration.
+This App lets you create goals with tasks, add a due date and check off completed tasks. also lets you see the history of past completed goals.
+## How to use
 
-## Deploy Your Own
+1. click the "+" button to create a new goal
+2. Input the name of the goal, and description of the task (goal is required, and atleast 1 task is required)
+2b. You can add more tasks by clicking the "add tasks" button
+3. Select a due date (if there is no due date just specify a date you want to finish it by)
+4. Click create goal
+5. Click the circle next to a task to mark it as complete.
+6. Once all task are complete a "Finish" button appears, allow you to mark the goal as complete.
+7. to check past goals, click the "show completed Goals so far!"
+8. Enjoy!
 
-Deploy your own Create React App project with Vercel.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/create-react-app&template=create-react-app)
-
-_Live Example: https://create-react-template.vercel.app/_
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes. You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.
-
-It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+## Thank you for trying the app !
+Here is a link to try it https://customizable-todo-accountability-app.vercel.app/
