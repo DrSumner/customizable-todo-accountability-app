@@ -240,3 +240,10 @@ flex-direction: column;
 .create-goal{
   color: #fdf6d3d2;
 }
+
+.warning{
+  color: #ff0000a4;
+  display: flex;
+  
+  font-size: 10px;
+}
