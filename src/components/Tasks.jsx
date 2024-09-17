@@ -11,6 +11,7 @@ const Tasks = (props) => {
 
 const {currentGoal, setCurrentGoal, goalsArray} = props
 const tasks = useSelector(state => state.goals[currentGoal].tasks)
+console.log(currentGoal)
 const progress = [
     useSelector(state => state.goals[currentGoal].completedTasksCount),
     useSelector(state => state.goals[currentGoal].tasks.length)
@@ -44,10 +45,10 @@ return(
                  <label >
                     <input className={`${task.completed ? 'completed' : null} checkbox`}
                     type='checkbox'
-                    name={task.description}
+                    name={task.taskname}
                     onClick={() => completeTask(task.id)}
                     />
-                    </label>{task.description}
+                    </label>{task.taskname}
                 </div>
             ))}
             </div>

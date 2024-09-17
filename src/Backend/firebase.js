@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInAnonymously } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -49,10 +49,52 @@ export async function addGoal(goal) {
 export async function getGoals() {
   try {
     const querySnapshot = await getDocs(collection(db, "goals"));
+    const data = []
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+      //console.log(doc.id, " => ", doc.data());
+      data.push(doc.data())
     });
+    return data
   } catch (e) {
     console.error("Error getting documents:", e);
   }
 }
+
+export async function addTask(tasks, goalid) {
+  try {
+    const docRef = await tasks.forEach( task => { addDoc(collection(db, "tasks"),
+       {
+      task,
+      goalid: goalid
+    })})
+    console.log("Document written with ID:", docRef.id);
+  } catch (e) {
+    console.error("Error adding document:", e);
+  }
+}
+
+export async function getTasks(goalid) {
+  try {
+    const tasksCollection = collection(db, "tasks");
+    const q = query(tasksCollection, where("goalid", "==", goalid));
+
+    const querySnapshot = await getDocs(q);
+    const data = [];
+
+    querySnapshot.forEach((doc) => {
+      //console.log(doc.id, " => ", doc.data());
+      data.push(doc.data());
+    });
+
+    return data;
+  } catch (e) {
+    console.error("Error getting documents:", e);
+    return []; 
+  }
+}
+
+// await getGoals()
+// .then(goals => console.log(goals[0]))
+
+// await getTasks(1)
+// .then(tasks => console.log(tasks[0]))

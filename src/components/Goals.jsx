@@ -9,7 +9,7 @@ const Goals = () => {
     const completedGoals = useSelector(state => state.completedGoals)
     const goalsArray = Object.values(goals)
 
-    console.log(completedGoals)
+    console.log(goals)
     const [currentGoal, setCurrentGoal] = useState(goalsArray[0]?.name || '');
     const [form, setForm] = useState(false)
     const [list, setList] = useState(false)

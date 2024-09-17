@@ -1,13 +1,25 @@
 import {
 SET_GOALS, COMPLETE_TASK, EDIT_GOALS, COMPLETE_GOAL
 } from '../actionTypes'
+import { getGoals, getTasks } from '../../Backend/firebase';
 
-
+const goals = await getGoals()
+const tasks = await getTasks(1)
 
 export const initialState = {
-    goals: {},
-    completedGoals: []
-}
+    goals: {
+        // ...goals.reduce((acc, goal) => {
+        //   acc[goal.goalname] = {
+        //     goalid: goal.goalid,
+        //     name: goal.goalname,
+        //     tasks: tasks,
+        //     completedTasksCount: tasks.filter(task => task.completed).length
+        //   };
+        //   return acc;
+        // }, {})
+      },
+      completedGoals: []
+    };
 
 export const reducer = (state= initialState, action) => {
     switch (action.type) {
@@ -16,7 +28,7 @@ export const reducer = (state= initialState, action) => {
                 ...state, 
                 goals: {...state.goals, 
                     [action.payload.name]: {
-                        id: action.payload.id,
+                        goalid: action.payload.id,
                         name: action.payload.name,
                         tasks: action.payload.tasks,
                         completionDate: action.payload.completionDate,
