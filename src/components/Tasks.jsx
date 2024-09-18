@@ -45,10 +45,10 @@ return(
                  <label >
                     <input className={`${task.completed ? 'completed' : null} checkbox`}
                     type='checkbox'
-                    name={task.taskname}
+                    name={task.description}
                     onClick={() => completeTask(task.id)}
                     />
-                    </label>{task.taskname}
+                    </label>{task.description}
                 </div>
             ))}
             </div>
