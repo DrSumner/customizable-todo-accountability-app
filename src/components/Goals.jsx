@@ -53,9 +53,9 @@ const Goals = () => {
         return (
             
             <div className="parent-container">
-                <button onClick={handleLogout} className="logout-btn">
+                {/* <button onClick={handleLogout} className="logout-btn">
                 Log Out
-            </button>
+            </button> */}
                 {goalsArray.length > 0 ? <div className="goals-container"> 
 
                 <h1> Goals:</h1>
