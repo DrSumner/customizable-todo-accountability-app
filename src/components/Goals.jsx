@@ -4,11 +4,14 @@ import Tasks from "./Tasks";
 import {  useSelector } from "react-redux";
 import { Form } from "./Form";
 import { signOutUser } from "../Backend/Auth"; 
+import { useNavigate } from "react-router-dom"; 
+
 const Goals = () => {
 
     const goals = useSelector(state => state.goals)
     const completedGoals = useSelector(state => state.completedGoals)
-    const goalsArray = Object.values(goals) 
+    const goalsArray = Object.values(goals)
+    const navigate = useNavigate();
 
     console.log(goals)
     const [currentGoal, setCurrentGoal] = useState(goalsArray[0]?.name || '');
@@ -43,10 +46,12 @@ const Goals = () => {
         const handleLogout = async () => {
             await signOutUser();
            // dispatch({ type: "CLEAR_GOALS" }); // Reset goals state if needed
-            localStorage.removeItem('userId');  
+            localStorage.removeItem('userId'); 
+            navigate('/'); 
         };
 
-        return (           
+        return (
+            
             <div className="parent-container">
                 <button onClick={handleLogout} className="logout-btn">
                 Log Out

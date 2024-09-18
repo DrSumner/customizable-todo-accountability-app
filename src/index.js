@@ -7,12 +7,15 @@ import { sendToVercelAnalytics } from './vitals';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { reducer } from './state/reducers/reducers';
+import { BrowserRouter as Router } from 'react-router-dom';
 const store = configureStore({ reducer: reducer })
 
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
+    <Router>
     <App />
+    </Router>
   </React.StrictMode>
   </Provider>
   ,

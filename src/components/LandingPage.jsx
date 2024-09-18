@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import Goals from "./Goals";
+import { useNavigate } from 'react-router-dom';
 import { sendEmailLink, checkExistingUser, completeSignInWithEmailLink } from '../Backend/Auth';
 
 const LandingPage = () => {
   const [userId, setUserId] = useState(null);
   const [email, setEmail] = useState('');
   const [statusMessage, setStatusMessage] = useState(''); // New state to store status messages
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if there's an existing user (from localStorage)
     const existingUserId = checkExistingUser();
     if (existingUserId) {
       setUserId(existingUserId);
+      navigate('/goals');
     }
 
     // Check if we need to complete an email sign-in (if they clicked the email link)
     completeSignInWithEmailLink().then((loggedInUserId) => {
       if (loggedInUserId) {
         setUserId(loggedInUserId);
+        navigate('/goals');
       }
     });
 
-  }, []);
+  }, [navigate]);
 
   const handleLogin = async () => {
     if (email.trim()) {
@@ -38,9 +41,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      { userId 
-        ? <Goals/> 
-        : <div>
+      {  <div>
             <h2>Welcome! Please enter your email</h2>
             <input
               type="email"
