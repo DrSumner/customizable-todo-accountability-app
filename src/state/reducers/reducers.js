@@ -3,8 +3,8 @@ SET_GOALS, COMPLETE_TASK, EDIT_GOALS, COMPLETE_GOAL
 } from '../actionTypes'
 import { getGoals, getTasks } from '../../Backend/firebase';
 
-const goals = await getGoals()
-const tasks = await getTasks(1)
+// const goals = await getGoals()
+// const tasks = await getTasks(1)
 
 export const initialState = {
     goals: {

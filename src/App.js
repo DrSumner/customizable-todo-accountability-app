@@ -1,14 +1,14 @@
 
 import './style/App.css';
 import Header from './components/Header';
-import Goals from './components/Goals';
+import LandingPage from './components/LandingPage';
 
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <Goals/>  
+      <LandingPage/>  
     </div>
   );
 }
